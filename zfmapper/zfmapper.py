@@ -10,14 +10,7 @@ from tifffile import imread
 import configparser
 import re
 
-# 入力値: 処理する画像の入ったディレクトリ
-# threshold = 2
-# dname = 'images'
-# target_color = 'red'
-# output_dir = '.'
-
-
-VERSION='0.0.2'
+VERSION='0.0.3'
 
 args = sys.argv
 
@@ -121,8 +114,16 @@ def main():
             data['g'] = gs[valid_pix]
             data['b'] = bs[valid_pix]
 
-            xmin_tiff = data['x'].min()
-            ymin_tiff = data['y'][data['x'] == xmin_tiff].min()
+            if not len(data['x']) == 0:
+                xmin_tiff = data['x'].min()
+            else:
+                data['x'] = np.ndarray([0])
+                xmin_tiff = np.int32(0)
+            if not len(data['y']) == 0:
+                ymin_tiff = data['y'][data['x'] == xmin_tiff].min()
+            else:
+                data['y'] = np.ndarray([0])
+                ymin_tiff = np.int32(0)
 
             # 正規化
             data['x'] = data['x'] - xmin_tiff
