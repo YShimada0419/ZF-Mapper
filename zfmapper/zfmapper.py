@@ -1,19 +1,36 @@
 #!/usr/bin/env python3
 # -*- coding: utf8 -*-
+
+"""
+   Copyright 2018 Dai Yamamoto
+   Copyright 2018-2019 Daisuke Sato
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+"""
+
+
 import tkinter as tk
-# import tkFileDialog #python2
-# import ScrolledText #python2
-from tkinter import filedialog as tkFileDialog #python3
-from tkinter import scrolledtext as ScrolledText #python3
+from tkinter import filedialog as tkFileDialog
+from tkinter import scrolledtext as ScrolledText
 import os
 import sys
 import numpy as np
 import pandas as pd
 from tifffile import imread
 import re
-from tkinter import messagebox
 
 VERSION = "0.1.0"
+
 
 class ZFMapperFrame(tk.Frame):
     def __init__(self, master=None):
@@ -70,11 +87,9 @@ class ZFMapperFrame(tk.Frame):
         self.process_status = tk.Label(root, text="Ready.", borderwidth=2, relief="groove")
         self.process_status.pack(side=tk.BOTTOM, fill=tk.X)
 
-
     def showinfo(self):
         msg = "ZF-Mapper Ver."+VERSION+"\n\nGitHub: https://github.com/YShimada0419/ZF-Mapper"
         tk.messagebox.showinfo("About", msg)
-
 
     def load_files(self):
         self.target_files = tkFileDialog.askopenfilenames(parent=root, title='Choose a file')
@@ -86,7 +101,6 @@ class ZFMapperFrame(tk.Frame):
         self.txt_filelist.delete(1.0, tk.END)
         self.txt_filelist.insert(tk.INSERT, file_list)
         self.process_status["text"] = str(len(self.target_files)) + " files selected."
-
 
     def process_files(self):
         files = self.target_files
@@ -132,7 +146,7 @@ def process_image(args, color="red", threshold=0):
             img_tiff = imread('%s%s' % (dname, fname))
 
             # translate to 8bit image
-            if(img_tiff.dtype!='uint8'):
+            if(img_tiff.dtype != 'uint8'):
                 print('converting to uint8')
                 img_tiff = (img_tiff/256).astype('uint8')
 
