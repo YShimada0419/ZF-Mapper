@@ -20,11 +20,16 @@ Step 1, 2, 3 are in no particular order.
 [![Image from Gyazo](https://i.gyazo.com/71e2ae452b3c4526e1adf9e85a6115b1.gif)](https://gyazo.com/71e2ae452b3c4526e1adf9e85a6115b1)
 
 ## Installation
+### binary
+
+1. download the compressed .zip file from [releases](https://github.com/YShimada0419/ZF-Mapper/releases) page
+2. unzip the downloaded .zip file
+3. run the executable file
+
 ### from source
 
-* Ubuntu
+install Python3 with tkinter, then run the followings:
 ```bash
-sudo apt install python3-tk
 pip install -e .
 python3 ./zfmapper/zfmapper.py
 ```
