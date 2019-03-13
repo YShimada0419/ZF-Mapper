@@ -37,3 +37,6 @@ python3 ./zfmapper/zfmapper.py
 ## License
 
 This repository is licensed under the Apache License, Version 2.0, see [LICENSE](./LICENSE).
+
+If you use ZF-Mapper in an academic work, please cite:
+https://doi.org/10.1089/zeb.2018.1683
